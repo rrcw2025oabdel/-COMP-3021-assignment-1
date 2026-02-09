@@ -4,7 +4,7 @@ import { exec } from 'child_process';
 import * as https from 'https';
 
 
-// replacng the hard-coded credentials with environment variables and safer defaults
+// replacing the hard-coded credentials with environment variables and safer defaults
 const dbConfig = {
     host: process.env.DB_HOST || '',
     user: process.env.DB_USER || '',
@@ -120,3 +120,4 @@ function saveToDb(data: string) {
     sendEmail('admin@example.com', 'User Input', userInput);
 
 })();
+
