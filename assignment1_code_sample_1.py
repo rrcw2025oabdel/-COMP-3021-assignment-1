@@ -43,14 +43,12 @@ def get_data():
 
 # FIX 5: Replaced string-formatted SQL query with a parameterized query because directly embedding user data into SQL queries allows SQL injection.
 # Solution: Using prepared statements with placeholders so the database treats user input strictly as data.
-def save_to_db(data):
-    query = f"INSERT INTO mytable (column1, column2) VALUES ('{data}', 'Another Value')"
-    connection = pymysql.connect(**db_config)
-    cursor = connection.cursor()
-    cursor.execute(query)
-    connection.commit()
-    cursor.close()
-    connection.close()
+def save_to_db(data): query = "INSERT INTO mytable (column1, column2) VALUES (%s, %s)" 
+    connection = pymysql.connect(**db_config) 
+    cursor = connection.cursor() 
+    cursor.execute(query, (data, "Another Value")) 
+    connection.commit() 
+    cursor.close() connection.close()
 
 if __name__ == '__main__':
     user_input = get_user_input()
